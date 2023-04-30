@@ -55,3 +55,41 @@ class Solution {
     }
 }
 
+//best time approach
+
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if(list1 == null && list2 == null){
+            return null;
+        }
+        if(list1 ==null || list2 == null){
+            if(list1 != null){
+                return list1;
+            }else{
+                return list2;
+            }
+        }
+        ListNode newHead = new ListNode(Integer.MIN_VALUE);
+        ListNode headNode = newHead;
+        ListNode plist1 = list1;
+        ListNode plist2 = list2;
+         while(plist1 != null && plist2 != null){
+             if(plist1.val <= plist2.val){
+                 newHead.next = plist1;
+                 plist1 = plist1.next;
+             }else{
+                 newHead.next = plist2;
+                 plist2 = plist2.next;
+             }
+             newHead = newHead.next;
+         }
+         if(plist1 == null){
+             newHead.next = plist2;
+         }else{
+             newHead.next = plist1;
+         }
+        return headNode.next;
+    }
+}
+
+//https://leetcode.com/problems/merge-two-sorted-lists/description/
